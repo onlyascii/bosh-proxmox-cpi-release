@@ -30,7 +30,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	proxmoxConn := wrdnconn.New(config.proxmox.ConnectNetwork, config.proxmox.ConnectAddress)
+	proxmoxConn := wrdnconn.New(config.Proxmox.ConnectNetwork, config.Proxmox.ConnectAddress)
 	proxmoxClient := wrdnclient.New(proxmoxConn)
 
 	cpiFactory := bwcaction.NewFactory(

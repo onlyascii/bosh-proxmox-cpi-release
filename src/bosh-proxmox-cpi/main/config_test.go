@@ -13,11 +13,11 @@ import (
 )
 
 var validConfig = Config{
-	proxmox: validproxmoxConfig,
+	Proxmox: validProxmoxConfig,
 	Actions: validActionsOptions,
 }
 
-var validproxmoxConfig = proxmoxConfig{
+var validProxmoxConfig = ProxmoxConfig{
 	ConnectNetwork: "fake-tcp",
 	ConnectAddress: "fake-address",
 }
@@ -35,10 +35,6 @@ var validActionsOptions = bwcaction.FactoryOpts{
 	Agent: apiv1.AgentOptions{
 		Mbus: "fake-mbus",
 		NTP:  []string{},
-
-		Blobstore: apiv1.BlobstoreOptions{
-			Type: "fake-blobstore-type",
-		},
 	},
 }
 
@@ -97,7 +93,7 @@ var _ = Describe("Config", func() {
 		})
 
 		It("returns error if proxmox section is not valid", func() {
-			config.proxmox.ConnectNetwork = ""
+			config.Proxmox.ConnectNetwork = ""
 
 			err := config.Validate()
 			Expect(err).To(HaveOccurred())
@@ -114,14 +110,14 @@ var _ = Describe("Config", func() {
 	})
 })
 
-var _ = Describe("proxmoxConfig", func() {
+var _ = Describe("ProxmoxConfig", func() {
 	var (
-		config proxmoxConfig
+		config ProxmoxConfig
 	)
 
 	Describe("Validate", func() {
 		BeforeEach(func() {
-			config = validproxmoxConfig
+			config = validProxmoxConfig
 		})
 
 		It("does not return error if all fields are valid", func() {

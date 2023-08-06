@@ -10,12 +10,12 @@ import (
 )
 
 type Config struct {
-	proxmox proxmoxConfig
+	Proxmox ProxmoxConfig
 
 	Actions bwcaction.FactoryOpts
 }
 
-type proxmoxConfig struct {
+type ProxmoxConfig struct {
 	// e.g. tcp, udp, unix
 	ConnectNetwork string
 
@@ -45,7 +45,7 @@ func NewConfigFromPath(path string, fs boshsys.FileSystem) (Config, error) {
 }
 
 func (c Config) Validate() error {
-	err := c.proxmox.Validate()
+	err := c.Proxmox.Validate()
 	if err != nil {
 		return bosherr.WrapError(err, "Validating proxmox configuration")
 	}
@@ -58,7 +58,7 @@ func (c Config) Validate() error {
 	return nil
 }
 
-func (c proxmoxConfig) Validate() error {
+func (c ProxmoxConfig) Validate() error {
 	if c.ConnectNetwork == "" {
 		return bosherr.Error("Must provide non-empty ConnectNetwork")
 	}
