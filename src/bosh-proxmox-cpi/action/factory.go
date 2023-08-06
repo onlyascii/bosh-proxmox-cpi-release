@@ -26,9 +26,9 @@ type Factory struct {
 }
 
 type CPI struct {
-	// InfoMethod
+	InfoMethod
 
-	// CreateStemcellMethod
+	CreateStemcellMethod
 	// DeleteStemcellMethod
 
 	// CreateVMMethod
@@ -110,9 +110,9 @@ func NewFactory(
 
 func (f Factory) New(_ apiv1.CallContext) (apiv1.CPI, error) {
 	return CPI{
-		// NewInfoMethod(),
+		NewInfoMethod(),
 
-		// NewCreateStemcellMethod(f.stemcellImporter),
+		NewCreateStemcellMethod(f.stemcellImporter),
 		// NewDeleteStemcellMethod(f.stemcellFinder),
 
 		// NewCreateVMMethod(f.stemcellFinder, f.vmCreator),
